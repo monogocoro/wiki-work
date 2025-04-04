@@ -2,7 +2,7 @@ name: Push to Main Repository Every 5 Minutes
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # 毎5分
+    - cron: '* 8 * * *'  # 毎5分
   workflow_dispatch:       # 手動実行も可能に
 
 jobs:
