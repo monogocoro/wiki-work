@@ -1,0 +1,26 @@
+name: Push to Main Repository Every 5 Minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # 毎5分
+  workflow_dispatch:       # 手動実行も可能に
+
+jobs:
+  sync-to-main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this (work) repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git config
+        run: |
+          git config --global user.email "info@okumocchi.jp"
+          git config --global user.name "okumocchi"
+
+      - name: Push to main repository
+        run: |
+          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/tbs-signage.wiki.git
+          git push main-origin HEAD:main --force
