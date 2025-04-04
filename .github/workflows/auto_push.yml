@@ -7,6 +7,17 @@ on:
 
 jobs:
   sync-to-main:
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      issues: write
+      packages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write 
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +33,5 @@ jobs:
 
       - name: Push to main repository
         run: |
-          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.git
+          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.wiki.git
           git push main-origin HEAD:main --force
