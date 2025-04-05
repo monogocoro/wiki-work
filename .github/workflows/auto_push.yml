@@ -25,17 +25,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          repository: monogocoro/wiki-test.wiki
+          token: ${{ secrets.TARGET_REPO_PAT }}
+          path: wiki-test/wiki 
       - name: Set up Git config
         run: |
           git config --global user.email "info@okumocchi.jp"
           git config --global user.name "okumocchi"
 
-      - name: Push to main repository
-        uses: actions/checkout@v2
-        with:
-          repository: monogocoro/wiki-test.wiki
-          token: ${{ secrets.TARGET_REPO_PAT }}
-          path: wiki-test/wiki      
+      - name: Push to main repository     
         run: |
           git push main-origin HEAD:main --force
