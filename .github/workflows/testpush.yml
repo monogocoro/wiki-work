@@ -23,6 +23,6 @@ jobs:
 
       - name: Push
         run: |
-          echo secrets.TARGET_REPO_PAT
+          echo ${{secrets.TARGET_REPO_PAT}}
           git remote set-url origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.wiki.git
           git push origin HEAD:main
