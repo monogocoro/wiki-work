@@ -32,5 +32,5 @@ jobs:
 
       - name: Push to main repository     
         run: |
-          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/okumocchi/wiki-test.wiki.git
+          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.git
           git push main-origin HEAD:main --force
