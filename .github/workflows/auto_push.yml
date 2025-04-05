@@ -27,7 +27,6 @@ jobs:
           fetch-depth: 0
           repository: monogocoro/wiki-test
           token: ${{ secrets.TARGET_REPO_PAT }}
-          path: wiki-test
       - name: Set up Git config
         run: |
           git config --global user.email "info@okumocchi.jp"
