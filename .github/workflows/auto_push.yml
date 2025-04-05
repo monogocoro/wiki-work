@@ -33,5 +33,6 @@ jobs:
 
       - name: Push to main repository     
         run: |
+          git remote set-url origin https://github.com/monogocoro/wiki-test.git
           git remote add main-origin https://x-access-token:${{ secrets.PAT }}@github.com/monogocoro/wiki-test.git
           git push main-origin HEAD:main --force
