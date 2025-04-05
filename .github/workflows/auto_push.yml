@@ -22,12 +22,9 @@ jobs:
 
     steps:
       - name: Checkout this (work) repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          repository: monogocoro/wiki-test
-          token: ${{ secrets.TARGET_REPO_PAT }}
-          path: wiki-work
       - name: Set up Git config
         run: |
           git config --global user.email "info@okumocchi.jp"
@@ -35,4 +32,5 @@ jobs:
 
       - name: Push to main repository     
         run: |
+          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.wiki.git
           git push main-origin HEAD:main --force
