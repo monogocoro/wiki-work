@@ -18,6 +18,7 @@ jobs:
       repository-projects: write
       security-events: write
       statuses: write 
+      pages: write
     runs-on: ubuntu-latest
 
     steps:
