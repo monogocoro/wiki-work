@@ -1,0 +1,28 @@
+name: Test Push
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Git config
+        run: |
+          git config --global user.email "info@okumocchi.jp"
+          git config --global user.name "okumocchi"
+
+      - name: Make dummy commit
+        run: |
+          echo "Test at $(date)" >> test.log
+          git add test.log
+          git commit -m "Test commit from Actions"
+
+      - name: Push
+        run: |
+          echo secrets.TARGET_REPO_PAT
+          git remote set-url origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.wiki.git
+          git push origin HEAD:main
