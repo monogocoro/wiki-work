@@ -32,6 +32,10 @@ jobs:
           git config --global user.name "okumocchi"
 
       - name: Push to main repository
+        uses: actions/checkout@v2
+        with:
+          repository: monogocoro/wiki-test.wiki
+          token: ${{ secrets.TARGET_REPO_PAT }}
+          path: wiki-test/wiki      
         run: |
-          git remote add main-origin https://x-access-token:${{ secrets.TARGET_REPO_PAT }}@github.com/monogocoro/wiki-test.wiki.git
           git push main-origin HEAD:main --force
