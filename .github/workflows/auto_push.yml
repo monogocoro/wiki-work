@@ -1,38 +1,25 @@
 name: Push to Main Repository Every 5 Minutes
 
 on:
-  schedule:
-    - cron: '* 8 * * *'  # 毎5分
-  workflow_dispatch:       # 手動実行も可能に
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  sync-to-main:
-    permissions:
-      actions: write
-      checks: write
-      contents: write
-      deployments: write
-      issues: write
-      packages: write
-      pull-requests: write
-      repository-projects: write
-      security-events: write
-      statuses: write 
-      pages: write
+  trigger-mirror:
+    if: github.repository == 'monogocoro/wiki-work'
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout this (work) repo
-        uses: actions/checkout@v4
+      - uses: actions/create-github-app-token@v1
+        id: app-token
         with:
-          fetch-depth: 0
-      - name: Set up Git config
-        run: |
-          git config --global user.email "info@okumocchi.jp"
-          git config --global user.name "okumocchi"
-
-      - name: Push to main repository     
-        run: |
-          git remote set-url origin https://github.com/monogocoro/wiki-test.git
-          git remote add main-origin https://x-access-token:${{ secrets.PAT }}@github.com/monogocoro/wiki-test.git
-          git push main-origin HEAD:main --force
+          app_id: ${{ vars.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          repositories: monogocoro/wiki-test
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+      - run: |
+          git remote add mirror https://github.com/monogocoro/wiki-test.git
+          git push mirror -f
