@@ -22,6 +22,6 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
       - run: |
-          git remote add mirror https://github.com/monogocoro/wiki-test.wiki.git
+          git remote add https://github.com/monogocoro/wiki-test.wiki.git
           git fetch --unshallow
-          git push mirror -f
+          git push -f
