@@ -24,4 +24,4 @@ jobs:
       - run: |
           git remote add target https://github.com/monogocoro/wiki-test.wiki.git
           git fetch --unshallow
-          git push target -f
+          git push target main:master -f
