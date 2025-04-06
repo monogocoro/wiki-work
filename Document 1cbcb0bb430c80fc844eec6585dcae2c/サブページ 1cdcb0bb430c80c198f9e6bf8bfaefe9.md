@@ -2,4 +2,4 @@
 
 オーナー: jo
 
-どうなるの？
+Japanese title page1.
