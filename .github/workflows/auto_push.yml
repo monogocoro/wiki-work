@@ -16,7 +16,7 @@ jobs:
         with:
           app_id: ${{ vars.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
-          repositories: monogocoro/wiki-test
+          repository_names: monogocoro/wiki-test
       - uses: actions/checkout@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
