@@ -17,11 +17,11 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
           owner: monogocoro
-          repositories: wiki-test
+          repositories: wiki-test.wiki
       - uses: actions/checkout@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
       - run: |
-          git remote add mirror https://github.com/monogocoro/wiki-test.git
+          git remote add mirror https://github.com/monogocoro/wiki-test.wiki.git
           git fetch --unshallow
           git push mirror -f
